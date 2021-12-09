@@ -1,0 +1,14 @@
+
+.employee {
+  display: flex;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 10px;
+  font-size: 22pt;
+  border-radius: 5px;
+  justify-content: space-between;
+}
+
+.employee:hover {
+  background: yellow;
+}

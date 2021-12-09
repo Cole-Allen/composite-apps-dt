@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+app-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+app-employee-list {
+  width: clamp(100px,100%,600px);
+}

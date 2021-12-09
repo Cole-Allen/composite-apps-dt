@@ -1,0 +1,6 @@
+
+.list {
+  height: calc(65px * 4);
+  overflow: scroll;
+  padding: 5px;
+}
