@@ -1,6 +1,5 @@
 <div class="list">
   <app-employee *ngFor="let employee of employeesArray"
   [name]="employee.name"
-  [id]="employee.id"
-  (newEventEmitter)="onEmit($event)"></app-employee>
+  [id]="employee.id"></app-employee>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { EmployeeService } from '../employee-service.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -7,16 +8,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class EmployeeListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private es: EmployeeService
+  ) { }
 
-  @Input() employeesArray!: any;
+  employeesArray: any;
+
+  getEmployees() {
+    this.es.getEmployees()
+      .subscribe(res => this.employeesArray = res);
+  }
 
   ngOnInit() {
     console.log('Pretend fetch request')
-  }
-
-  onEmit(event: any) {
-    console.log(event);
+    this.getEmployees();
   }
 
 }

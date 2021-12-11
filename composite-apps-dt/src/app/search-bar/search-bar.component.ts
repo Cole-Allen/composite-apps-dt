@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { EmployeeService } from '../employee-service.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,7 +13,10 @@ export class SearchBarComponent implements OnInit {
     search: ''
   })
 
-  constructor (private fb: FormBuilder) {
+  constructor (
+    private fb: FormBuilder,
+    private es: EmployeeService
+      ) {
 
   }
 

@@ -1,13 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
 app-root {
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   flex-direction: column;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: clamp(100px,100%,900px);
 }
 
-app-employee-list {
+app-employee-list,
+app-search-bar,
+app-employee-card {
   width: clamp(100px,100%,600px);
 }

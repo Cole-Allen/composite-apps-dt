@@ -1,20 +1,39 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../employee-service.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-card',
   templateUrl: './employee-card.component.html',
+  styleUrls: ['./employee-card.component.css']
 })
 export class EmployeeCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private es: EmployeeService,
+    private fb: FormBuilder
+  ) { }
 
-  @Input() addEmployee !: (name: string) => void;
-  @Input() id !: any;
+  selectedEmployee: any;
 
-  cardV: string = '';
+  employeeCard = this.fb.group({
+    name: ''
+  })
 
-  ngOnInit(): void {
-    console.log(this.cardV);
+  getSelectedEmployee() {
+    this.es.selectedEmployeeObservable
+      .subscribe(res => {
+        this.selectedEmployee = res;
+        this.employeeCard.controls['name'].setValue(res.name);
+      });
   }
 
+  onSave() {
+    console.log(this.selectedEmployee);
+  }
+
+  ngOnInit(): void {
+    this.employeeCard.valueChanges.subscribe(console.log);
+    this.getSelectedEmployee();
+  }
 }

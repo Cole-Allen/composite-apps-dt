@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Edit } from '../edit.service';
+import { EmployeeService } from '../employee-service.service';
 
 @Component({
   selector: 'app-employee',
@@ -14,7 +14,7 @@ export class EmployeeComponent implements OnInit {
   @Output() newEventEmitter = new EventEmitter<any>();
 
   constructor(
-    private edit: Edit
+    private es: EmployeeService
   ) {
     this.onClick = this.onClick.bind(this);
   }
@@ -23,9 +23,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   onClick() {
-    this.newEventEmitter.emit(this.id);
-    this.newEventEmitter.emit(this.name);
-    this.edit.test(this.name, this.id);
+    this.es.selectEmployee({name: this.name, id: this.id});
   }
 
 }
