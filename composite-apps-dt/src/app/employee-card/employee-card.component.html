@@ -1,13 +1,17 @@
 <h1>Employee Information</h1>
 
-<h3>{{selectedEmployee.value | json}}</h3>
+<h3>{{selectedEmployee | json}}</h3>
 
 <form [formGroup]="employeeCard">
   <div class="card-id">ID: {{selectedEmployee.id}}</div>
-  <label for="cardName">Name</label>
+  <label for="cardFirstName">First Name</label>
   <input type="text"
-  id="cardName"
-  formControlName="name">
-  <button>Delete</button>
+  id="cardFirstName"
+  formControlName="firstName">
+  <label for="cardLastName">Last Name</label>
+  <input type="text"
+  id="cardLastName"
+  formControlName="lastName">
+  <button (click)="onDelete()">Delete</button>
   <button (click)="onSave()">Save</button>
 </form>

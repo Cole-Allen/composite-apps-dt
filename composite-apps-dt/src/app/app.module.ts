@@ -10,6 +10,7 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeComponent } from './employee/employee.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { EmployeeComponent } from './employee/employee.component';
     SearchBarComponent,
     EmployeeListComponent,
     EmployeeCardComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,

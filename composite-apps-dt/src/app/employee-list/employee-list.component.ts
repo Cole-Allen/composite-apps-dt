@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ChildActivationStart } from '@angular/router';
 import { EmployeeService } from '../employee-service.service';
 
 @Component({
@@ -12,16 +13,19 @@ export class EmployeeListComponent implements OnInit {
     private es: EmployeeService
   ) { }
 
-  employeesArray: any;
+  employeesArray: any = {};
 
-  getEmployees() {
-    this.es.getEmployees()
-      .subscribe(res => this.employeesArray = res);
+  onAdd() {
+    console.log('test');
   }
 
   ngOnInit() {
-    console.log('Pretend fetch request')
-    this.getEmployees();
+    this.es.getEmployees();
+    this.es.employeesArrayObservable
+    .subscribe(res => {
+      console.log('list result', res);
+      this.employeesArray = res;
+    });
   }
 
 }

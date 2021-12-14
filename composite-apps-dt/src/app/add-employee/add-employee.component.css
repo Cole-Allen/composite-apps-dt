@@ -1,0 +1,17 @@
+label {
+  display: block;
+  text-align: left;
+  padding: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  font-size: 18pt;
+  margin-bottom: 15px;
+}
+
+.card-id {
+  font-size: 22pt;
+  font-weight: 600;
+}

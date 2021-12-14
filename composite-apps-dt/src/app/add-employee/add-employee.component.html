@@ -1,0 +1,10 @@
+<h1>Add Employee</h1>
+
+<form [formGroup]="newEmployeeCard">
+  <label for="cardFirstName">First Name</label>
+  <input type="text" id="cardFirstName" formControlName="firstName">
+  <label for="cardLastName">Last Name</label>
+  <input type="text" id="cardLastName" formControlName="lastName">
+  <button>Cancel</button>
+  <button (click)="onAdd()">Add</button>
+</form>

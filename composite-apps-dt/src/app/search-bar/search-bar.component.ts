@@ -21,11 +21,23 @@ export class SearchBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchForm.valueChanges.subscribe(console.log);
+    this.searchForm.valueChanges.subscribe();
   }
 
   onSubmit():void {
-    console.log('submitted', this.searchForm.value);
+    if (this.searchForm.value.search === '') {
+      return;
+    }
+    if (!isNaN(parseInt(this.searchForm.value.search))) {
+      console.log('number!');
+      fetch(`/employees/id/${this.searchForm.value.search}`)
+        .then(res => console.log('res', res));
+    } else {
+      console.log('String!');
+      fetch(`/employees/name/${this.searchForm.value.search}`)
+        .then(res => console.log('res', res));
+    }
+
     this.searchForm.reset();
   }
 

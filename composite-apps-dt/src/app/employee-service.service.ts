@@ -9,33 +9,23 @@ import { Employee } from "./employee";
 export class EmployeeService {
   timesRan = 0;
 
-  employeesArray = [{
-    name: 'Cole Allen',
-    id: 0
-  },
-  {
-    name: 'Isaac Paxman',
-    id: 1
-  }];
+  employeesArray = new BehaviorSubject<any>([{}]);
+
+  employeesArrayObservable: Observable<any> = this.employeesArray.asObservable();
 
   id = 2
 
-  selectedEmployee = new BehaviorSubject<any>({name: 'Work Please', id: 9});
+  selectedEmployee = new BehaviorSubject<any>({});
 
   selectedEmployeeObservable: Observable<any> = this.selectedEmployee.asObservable();
 
-  getEmployees(): Observable<any> {
-    const heroes = of(this.employeesArray)
-    return heroes;
-  }
-
-  addEmployee(name: string): void {
-    this.addEmployee = this.addEmployee.bind(this);
-    this.employeesArray.push({
-      name,
-      id: this.id
-    });
-    this.id++;
+  getEmployees() {
+    fetch('/employees')
+      .then(res => res.json())
+      .then(data => {
+        this.employeesArray.next(data);
+      })
+      .catch(err => (console.error(err)));
   }
 
   selectEmployee(employee: any) {

@@ -17,23 +17,54 @@ export class EmployeeCardComponent implements OnInit {
   selectedEmployee: any;
 
   employeeCard = this.fb.group({
-    name: ''
+    firstName: '',
+    lastName: ''
   })
 
   getSelectedEmployee() {
     this.es.selectedEmployeeObservable
       .subscribe(res => {
         this.selectedEmployee = res;
-        this.employeeCard.controls['name'].setValue(res.name);
+        console.log(res);
+        this.employeeCard.controls['firstName'].setValue(res.firstName);
+        this.employeeCard.controls['lastName'].setValue(res.lastName);
       });
   }
 
   onSave() {
-    console.log(this.selectedEmployee);
+    console.log(this.selectedEmployee.id);
+    if (this.selectedEmployee.id) {
+      fetch(`/employees/${this.selectedEmployee.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.employeeCard.value)
+      })
+        .then(res => res.json())
+        .then(data => this.es.getEmployees());
+    } else {
+      console.log('No employee selected');
+    }
+  }
+
+  onDelete() {
+    if (window.confirm('Test')) {
+      if (this.selectedEmployee.id) {
+        fetch(`/employees/${this.selectedEmployee.id}`, {
+          method: 'DELETE'
+        }).then(res => res.json())
+        .then( data => {
+          console.log(data);
+          this.es.getEmployees();
+          this.es.selectEmployee({});
+        });
+      }
+    }
   }
 
   ngOnInit(): void {
-    this.employeeCard.valueChanges.subscribe(console.log);
+    this.employeeCard.valueChanges.subscribe();
     this.getSelectedEmployee();
   }
 }

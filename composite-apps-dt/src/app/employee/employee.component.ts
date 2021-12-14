@@ -8,7 +8,8 @@ import { EmployeeService } from '../employee-service.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  @Input() name !: string;
+  @Input() firstName !: string;
+  @Input() lastName !: string;
   @Input() id !: number;
 
   @Output() newEventEmitter = new EventEmitter<any>();
@@ -23,7 +24,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   onClick() {
-    this.es.selectEmployee({name: this.name, id: this.id});
+    this.es.selectEmployee({firstName: this.firstName, lastName: this.lastName, id: this.id});
   }
 
 }
