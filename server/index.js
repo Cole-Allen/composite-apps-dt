@@ -23,7 +23,7 @@ app.get('/employees', (req,res,next) => {
   FROM
     "employees"
   ORDER BY "employeeId"
-  `
+  `;
   db.query(sql)
   .then(result => {
     res.status(200).json(result.rows);
@@ -32,14 +32,61 @@ app.get('/employees', (req,res,next) => {
 });
 
 app.get('/employees/id/:id', (req,res,next) => {
-  console.log(req.params.id);
-  res.status(201).json({ Testing: req.params.id});
+  const sql = `
+  SELECT *
+  FROM "employees"
+  WHERE "employeeId" = $1
+  `;
+  const params = [req.params.id];
+
+  db.query(sql, params)
+  .then(result => {
+    res.status(200).json(result.rows);
+  })
 })
 
-app.get('/employees/name/:name', (req, res, next) => {
-  console.log(req.params.name);
-  res.status(201).json({ Testing: req.params.name });
-})
+app.get('/employees/name', (req,res,next) => {
+  console.log(req.query);
+  let sql;
+  let params;
+
+  if (req.query.name) {
+    sql =`
+    SELECT *
+    FROM "employees"
+    WHERE lower("firstName") = lower($1)
+    OR lower("lastName") = lower($1)
+    `;
+    params = [req.query.name];
+  } else if (req.query.firstName && req.query.lastName) {
+    sql = `
+  SELECT *
+  FROM "employees"
+  WHERE lower("firstName") = lower($1) and lower("lastName") = lower($2)
+  `;
+    params = [req.query.firstName, req.query.lastName];
+  } else if (!req.query.lastName) {
+    sql = `
+  SELECT *
+  FROM "employees"
+  WHERE lower("firstName") = lower($1)
+  `;
+    params = [req.query.firstName]
+  } else if (!req.query.firstName) {
+    sql = `
+  SELECT *
+  FROM "employees"
+  WHERE  lower("lastName") = lower($1)
+  `;
+  params = [req.query.lastName];
+  }
+
+  db.query(sql, params)
+  .then(result => {
+    res.status(200).json(result.rows);
+  })
+  .catch(err => console.log(err));
+});
 
 app.put('/employees/:id', (req,res,next) => {
   console.log(req.body.firstName);
