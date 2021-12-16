@@ -15,3 +15,25 @@ input {
   font-size: 22pt;
   font-weight: 600;
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 30px;
+}
+
+.card-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.205);
+}

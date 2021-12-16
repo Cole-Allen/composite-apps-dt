@@ -1,7 +1,9 @@
 <div class="list">
   <button (click)="onAdd()">Add new employee</button>
-  <app-employee *ngFor="let employee of employeesArray"
+  <app-employee *ngFor="let employee of employeesArray; let last = last"
   [firstName]="employee.firstName"
   [lastName]="employee.lastName"
-  [id]="employee.employeeId"></app-employee>
+  [employeeId]="employee.employeeId"
+  [last]="last"
+  class="employee"></app-employee>
 </div>

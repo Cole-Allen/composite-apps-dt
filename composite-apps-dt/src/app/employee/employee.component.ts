@@ -10,7 +10,8 @@ export class EmployeeComponent implements OnInit {
 
   @Input() firstName !: string;
   @Input() lastName !: string;
-  @Input() id !: number;
+  @Input() employeeId !: number;
+  @Input() last !: boolean;
 
   @Output() newEventEmitter = new EventEmitter<any>();
 
@@ -21,10 +22,11 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.last);
   }
 
   onClick() {
-    this.es.selectEmployee({firstName: this.firstName, lastName: this.lastName, id: this.id});
+    this.es.selectEmployee({firstName: this.firstName, lastName: this.lastName, employeeId: this.employeeId});
   }
 
 }

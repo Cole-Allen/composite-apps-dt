@@ -16,7 +16,6 @@ app.use(staticMiddleware);
 app.use(express.json());
 
 app.get('/employees', (req,res,next) => {
-  console.log('Get list');
   const sql = `
   SELECT
     *
@@ -46,7 +45,6 @@ app.get('/employees/id/:id', (req,res,next) => {
 })
 
 app.get('/employees/name', (req,res,next) => {
-  console.log(req.query);
   let sql;
   let params;
 
@@ -89,9 +87,6 @@ app.get('/employees/name', (req,res,next) => {
 });
 
 app.put('/employees/:id', (req,res,next) => {
-  console.log(req.body.firstName);
-  console.log(req.body.lastName);
-
   const sql = `
   UPDATE
     "employees"

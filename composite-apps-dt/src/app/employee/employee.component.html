@@ -1,10 +1,11 @@
 <div class="employee"
+[ngClass]="{last: last}"
 (click)="onClick()">
   <div>
     {{firstName}}
     {{lastName}}
   </div>
   <div>
-    {{id}}
+    {{employeeId}}
   </div>
 </div>

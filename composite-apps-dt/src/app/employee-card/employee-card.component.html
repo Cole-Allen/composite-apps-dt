@@ -1,17 +1,14 @@
-<h1>Employee Information</h1>
-
-<h3>{{selectedEmployee | json}}</h3>
-
-<form [formGroup]="employeeCard">
-  <div class="card-id">ID: {{selectedEmployee.id}}</div>
-  <label for="cardFirstName">First Name</label>
-  <input type="text"
-  id="cardFirstName"
-  formControlName="firstName">
-  <label for="cardLastName">Last Name</label>
-  <input type="text"
-  id="cardLastName"
-  formControlName="lastName">
-  <button (click)="onDelete()">Delete</button>
-  <button (click)="onSave()">Save</button>
-</form>
+<div class="card-modal" [ngClass]="{hidden : !selectedEmployee.employeeId}" (click)="cancel($event)">
+  <div class="card" [ngClass]="{hidden : !selectedEmployee.employeeId}">
+    <h1>Employee Information</h1>
+    <form [formGroup]="employeeCard">
+      <div class="card-id">ID: {{selectedEmployee.employeeId}}</div>
+      <label for="cardFirstName">First Name</label>
+      <input type="text" id="cardFirstName" formControlName="firstName">
+      <label for="cardLastName">Last Name</label>
+      <input type="text" id="cardLastName" formControlName="lastName">
+      <button (click)="onDelete()">Delete</button>
+      <button (click)="onSave()">Save</button>
+    </form>
+  </div>
+</div>

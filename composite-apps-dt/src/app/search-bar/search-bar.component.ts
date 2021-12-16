@@ -29,12 +29,10 @@ export class SearchBarComponent implements OnInit {
       return;
     }
     if (!isNaN(parseInt(this.searchForm.value.search))) {
-      console.log('number!');
       fetch(`/employees/id/${this.searchForm.value.search}`)
         .then(res => res.json())
         .then(data => this.selectEmployee(data[0]));
     } else {
-      console.log('String!');
       let name = this.searchForm.value.search.split(' ');
       if (name.length > 1) {
         fetch(`/employees/name/?firstName=${name[0]}&lastName=${name[1]}`)

@@ -15,15 +15,16 @@ export class EmployeeListComponent implements OnInit {
 
   employeesArray: any = {};
 
+
+
   onAdd() {
-    console.log('test');
+    this.es.employeeAdd(true);
   }
 
   ngOnInit() {
     this.es.getEmployees();
     this.es.employeesArrayObservable
     .subscribe(res => {
-      console.log('list result', res);
       this.employeesArray = res;
     });
   }

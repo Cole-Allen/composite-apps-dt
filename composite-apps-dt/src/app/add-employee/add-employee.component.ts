@@ -14,6 +14,8 @@ export class AddEmployeeComponent implements OnInit {
     private es: EmployeeService
   ) { }
 
+  adding: boolean = false;
+
   newEmployeeCard = this.fb.group({
     firstName: '',
     lastName: ''
@@ -28,13 +30,24 @@ export class AddEmployeeComponent implements OnInit {
       body: JSON.stringify(this.newEmployeeCard.value)
     })
     .then(res => {
-      console.log(res);
       this.es.getEmployees();
+      this.es.employeeAdd(false);
+      this.newEmployeeCard.controls['firstName'].setValue('');
+      this.newEmployeeCard.controls['lastName'].setValue('');
     })
 
   }
 
+  cancelAdd(e: any) {
+    if (e.target.getAttribute('class') === 'card-modal') {
+      this.es.employeeAdd(false);
+    }
+
+  }
+
   ngOnInit(): void {
+    this.es.addingEmployeeObservable
+    .subscribe(res => this.adding = res);
   }
 
 }

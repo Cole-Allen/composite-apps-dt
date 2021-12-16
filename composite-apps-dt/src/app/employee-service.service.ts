@@ -7,17 +7,18 @@ import { Employee } from "./employee";
 })
 
 export class EmployeeService {
-  timesRan = 0;
 
   employeesArray = new BehaviorSubject<any>([{}]);
 
   employeesArrayObservable: Observable<any> = this.employeesArray.asObservable();
 
-  id = 2
-
   selectedEmployee = new BehaviorSubject<any>({});
 
   selectedEmployeeObservable: Observable<any> = this.selectedEmployee.asObservable();
+
+  addingEmployee = new BehaviorSubject<any>(false);
+
+  addingEmployeeObservable: Observable<any> = this.addingEmployee.asObservable();
 
   getEmployees() {
     fetch('/employees')
@@ -26,6 +27,10 @@ export class EmployeeService {
         this.employeesArray.next(data);
       })
       .catch(err => (console.error(err)));
+  }
+
+  employeeAdd(bool: boolean){
+    this.addingEmployee.next(bool);
   }
 
   selectEmployee(employee: any) {

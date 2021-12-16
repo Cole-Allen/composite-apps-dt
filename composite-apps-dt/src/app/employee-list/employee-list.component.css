@@ -1,6 +1,12 @@
 
 .list {
-  height: calc(65px * 4);
-  overflow: scroll;
-  padding: 5px;
+  height: 70vh;
+  overflow: auto;
+  position: relative;
+}
+
+button {
+  padding: 10px;
+  font-size: clamp(16pt,8vw, 22pt);
+  width: 100%;
 }

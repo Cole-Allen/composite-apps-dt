@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background: rgb(38, 38, 41);
+}
+
 app-root {
   margin: 0 auto;
   display: flex;
@@ -18,4 +22,12 @@ app-employee-list,
 app-search-bar,
 app-employee-card {
   width: clamp(100px,100%,600px);
+}
+
+app-employee-list {
+  background: rgb(75, 75, 75);
+}
+
+.hidden {
+  display: none !important;
 }

@@ -1,14 +1,17 @@
 
 .employee {
   display: flex;
-  border: 2px solid black;
-  margin: 5px;
+  border-top: 1px solid rgb(255, 255, 255);
   padding: 10px;
-  font-size: 22pt;
-  border-radius: 5px;
+  font-size: clamp(16pt,8vw, 22pt);
   justify-content: space-between;
+  color: white;
+}
+
+.last {
+  border-bottom:1px solid rgb(255, 255, 255);
 }
 
 .employee:hover {
-  background: yellow;
+  background: rgb(168, 168, 168);
 }
